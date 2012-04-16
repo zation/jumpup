@@ -1,0 +1,29 @@
+.content {
+  margin-left: 400px;
+}
+
+dl {
+  line-height: 20px;
+}
+
+dt {
+  float: left;
+  width: 52px;
+  text-align: right;
+  padding-right: 10px;
+}
+
+li {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid black;
+}
+
+.email-content {
+
+}
+
+.popup {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+}
