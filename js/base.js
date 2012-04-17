@@ -1,6 +1,9 @@
 $(document).ready(function() {
 
   $('li').on('click', function() {
-    $(this).popup();
+    $(this).popup({
+    	height: 300,
+    	width: 1200
+    });
   });
 });

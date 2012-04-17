@@ -95,5 +95,5 @@ li {
 /* line 26, ../sass/_base.scss */
 .popup {
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: #f0f0f0;
 }
