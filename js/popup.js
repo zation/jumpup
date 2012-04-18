@@ -1,7 +1,7 @@
 (function($) {
-  var popup_class = "popup";
+  var jumpup_class = "jumpup";
 
-  function Popup(options, origin_el) {
+  function Jumpup(options, origin_el) {
     var scroll_left = $(window).scrollLeft();
     var scroll_top = $(window).scrollTop();
 
@@ -22,66 +22,64 @@
     this.middle_width = (this.end_width - this.begin_width) / 2 + this.begin_width;
     this.middle_height = (this.end_height - this.begin_height) / 2 + this.begin_height;
     this.middle_top = scroll_top - this.end_height / 2;
-    // this.middle_top = scroll_top;
     this.middle_left = Math.abs(this.end_left - this.begin_left) / 2;
     this.middle_duration = 225;
 
-    this.popup_el = origin_el.clone().addClass(popup_class);
+    this.jumpup_el = origin_el.clone().addClass(jumpup_class);
 
     this.begin_opacity = 1;
     this.end_opacity = 1;
     this.middle_opacity = 1;
-    // this.middle_opacity = (this.end_opacity - this.begin_opacity) / 2;
     this.MSPF = 25;
   }
 
-  Popup.prototype = {
+  Jumpup.prototype = {
     initialize: function() {
-      this.popup_el.css({
+      this.jumpup_el.css({
         'left': this.begin_left,
         'top': this.begin_top,
         'width': this.begin_width,
         'height': this.begin_height,
         'opacity': this.begin_opacity
       });
-      this.origin_el.after(this.popup_el);
+      this.origin_el.after(this.jumpup_el);
     },
 
     animate: function() {
-      var popup = this;
+      var jumpup = this;
 
-      popup.popup_el.animate({
-        'top': popup.middle_top,
-        'left': popup.middle_left,
-        'height': popup.middle_height,
-        'width': popup.middle_width,
+      jumpup.jumpup_el.animate({
+        'top': jumpup.middle_top,
+        'left': jumpup.middle_left,
+        'height': jumpup.middle_height,
+        'width': jumpup.middle_width,
         'flip': true,
-        'opacity': popup.middle_opacity
-      }, popup.middle_duration, 'ellipse', function() {
-        $(popup.popup_el).animate({
-          'top': popup.end_top,
-          'left': popup.end_left,
-          'height': popup.end_height,
-          'width': popup.end_width,
+        'opacity': jumpup.middle_opacity
+      }, jumpup.middle_duration, 'ellipse', function() {
+        $(jumpup.jumpup_el).animate({
+          'top': jumpup.end_top,
+          'left': jumpup.end_left,
+          'height': jumpup.end_height,
+          'width': jumpup.end_width,
           'flip': true,
-          'opacity': popup.end_opacity
-        }, popup.end_duration, 'ellipse');
+          'opacity': jumpup.end_opacity
+        }, jumpup.end_duration, 'ellipse');
       });
     }
   };
 
-  $.fn.popup = function(options) {
+  $.fn.jumpup = function(options) {
     var defaults = {};
     var settings = $.extend({}, defaults, options);
-    $('.' + popup_class).remove();
+    $('.' + jumpup_class).remove();
     var $el = $(this);
 
-    var popup = new Popup(settings, $el);
+    var jumpup = new Jumpup(settings, $el);
 
     setTimeout(function() {
-      popup.initialize();
-      popup.animate();
-    }, popup.begin_duration);
+      jumpup.initialize();
+      jumpup.animate();
+    }, jumpup.begin_duration);
 
     return this;
   };
